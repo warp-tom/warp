@@ -1,0 +1,54 @@
+﻿A  warp_driver/android/.gitignore
+A  warp_driver/android/app/build.gradle.kts
+A  warp_driver/android/app/src/debug/AndroidManifest.xml
+A  warp_driver/android/app/src/main/AndroidManifest.xml
+A  warp_driver/android/app/src/main/kotlin/com/warp/warp_driver/MainActivity.kt
+A  warp_driver/android/app/src/main/res/drawable-v21/launch_background.xml
+A  warp_driver/android/app/src/main/res/drawable/launch_background.xml
+A  warp_driver/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+A  warp_driver/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+A  warp_driver/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+A  warp_driver/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+A  warp_driver/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+A  warp_driver/android/app/src/main/res/values-night/styles.xml
+A  warp_driver/android/app/src/main/res/values/styles.xml
+A  warp_driver/android/app/src/profile/AndroidManifest.xml
+A  warp_driver/android/build.gradle.kts
+A  warp_driver/android/gradle.properties
+A  warp_driver/android/gradle/wrapper/gradle-wrapper.properties
+A  warp_driver/android/settings.gradle.kts
+A  warp_user/android/.gitignore
+ D warp_user/android/.gradle/8.14/checksums/md5-checksums.bin
+ D warp_user/android/.gradle/8.14/checksums/sha1-checksums.bin
+ D warp_user/android/.gradle/8.14/executionHistory/executionHistory.bin
+ M warp_user/android/.gradle/8.14/executionHistory/executionHistory.lock
+ M warp_user/android/.gradle/8.14/fileHashes/fileHashes.bin
+ M warp_user/android/.gradle/8.14/fileHashes/fileHashes.lock
+ M warp_user/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+ M warp_user/android/.gradle/buildOutputCleanup/cache.properties
+ D warp_user/android/.gradle/buildOutputCleanup/outputFiles.bin
+ D warp_user/android/.gradle/file-system.probe
+ M warp_user/android/.gradle/noVersion/buildLogic.lock
+A  warp_user/android/app/build.gradle.kts
+A  warp_user/android/app/src/debug/AndroidManifest.xml
+A  warp_user/android/app/src/main/AndroidManifest.xml
+A  warp_user/android/app/src/main/kotlin/com/warp/warp_user/MainActivity.kt
+A  warp_user/android/app/src/main/res/drawable-v21/launch_background.xml
+A  warp_user/android/app/src/main/res/drawable/launch_background.xml
+A  warp_user/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+A  warp_user/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+A  warp_user/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+A  warp_user/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+A  warp_user/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+A  warp_user/android/app/src/main/res/values-night/styles.xml
+A  warp_user/android/app/src/main/res/values/styles.xml
+A  warp_user/android/app/src/profile/AndroidManifest.xml
+A  warp_user/android/build.gradle.kts
+A  warp_user/android/gradle.properties
+A  warp_user/android/gradle/wrapper/gradle-wrapper.properties
+A  warp_user/android/settings.gradle.kts
+?? all_changes.txt
+?? diff_list.txt
+?? diff_list_utf8.txt
+?? warp_driver/lib/providers/auth_provider.dart
+?? warp_user/lib/providers/auth_provider.dart
