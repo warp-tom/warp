@@ -206,3 +206,88 @@ CREATE TABLE IF NOT EXISTS public.fare_config (
   surge_multiplier numeric(4,2) DEFAULT 1.00,
   is_active boolean DEFAULT true
 );
+-- Enable RLS on all tables
+ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.drivers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.vehicles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.driver_locations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.trips ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.parcel_orders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.errand_orders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.payments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.ratings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.notifications ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.chat_messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.saved_places ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.driver_documents ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.fare_config ENABLE ROW LEVEL SECURITY;
+
+-- 2. Profiles
+CREATE POLICY "Users can view own profile" ON public.profiles FOR SELECT USING (auth.uid() = id);
+CREATE POLICY "Users can update own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
+
+-- 3. Drivers
+CREATE POLICY "Public profiles are viewable by everyone" ON public.drivers FOR SELECT USING (true);
+CREATE POLICY "Drivers can update own profile" ON public.drivers FOR UPDATE USING (auth.uid() = id);
+
+-- 4. Vehicles
+CREATE POLICY "Drivers can view own vehicles" ON public.vehicles FOR SELECT USING (auth.uid() = driver_id);
+CREATE POLICY "Drivers can insert own vehicles" ON public.vehicles FOR INSERT WITH CHECK (auth.uid() = driver_id);
+CREATE POLICY "Drivers can update own vehicles" ON public.vehicles FOR UPDATE USING (auth.uid() = driver_id);
+CREATE POLICY "Drivers can delete own vehicles" ON public.vehicles FOR DELETE USING (auth.uid() = driver_id);
+
+-- 5. Driver Locations
+CREATE POLICY "Locations are viewable by everyone" ON public.driver_locations FOR SELECT USING (true);
+CREATE POLICY "Drivers can insert own location" ON public.driver_locations FOR INSERT WITH CHECK (auth.uid() = driver_id);
+CREATE POLICY "Drivers can update own location" ON public.driver_locations FOR UPDATE USING (auth.uid() = driver_id);
+
+-- 6. Trips
+CREATE POLICY "Users can view own trips" ON public.trips FOR SELECT USING (auth.uid() = user_id OR auth.uid() = driver_id);
+CREATE POLICY "Users can insert own trips" ON public.trips FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users/Drivers can update own trips" ON public.trips FOR UPDATE USING (auth.uid() = user_id OR auth.uid() = driver_id);
+
+-- 7. Parcel Orders
+CREATE POLICY "Users can view own parcels" ON public.parcel_orders FOR SELECT USING (auth.uid() = sender_id OR auth.uid() = driver_id);
+CREATE POLICY "Users can insert own parcels" ON public.parcel_orders FOR INSERT WITH CHECK (auth.uid() = sender_id);
+CREATE POLICY "Users/Drivers can update own parcels" ON public.parcel_orders FOR UPDATE USING (auth.uid() = sender_id OR auth.uid() = driver_id);
+
+-- 8. Errand Orders
+CREATE POLICY "Users can view own errands" ON public.errand_orders FOR SELECT USING (auth.uid() = user_id OR auth.uid() = driver_id);
+CREATE POLICY "Users can insert own errands" ON public.errand_orders FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users/Drivers can update own errands" ON public.errand_orders FOR UPDATE USING (auth.uid() = user_id OR auth.uid() = driver_id);
+
+-- 9. Payments
+CREATE POLICY "Users can view own payments" ON public.payments FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert own payments" ON public.payments FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- 10. Ratings
+CREATE POLICY "Users can view own ratings" ON public.ratings FOR SELECT USING (auth.uid() = user_id OR auth.uid() = driver_id);
+CREATE POLICY "Users can insert own ratings" ON public.ratings FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- 11. Notifications
+CREATE POLICY "Users can view own notifications" ON public.notifications FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can update own notifications" ON public.notifications FOR UPDATE USING (auth.uid() = user_id);
+
+-- 12. Chat Messages
+CREATE POLICY "Users can view own messages" ON public.chat_messages FOR SELECT USING (
+  EXISTS (
+    SELECT 1 FROM public.trips t
+    WHERE t.id = trip_id AND (t.user_id = auth.uid() OR t.driver_id = auth.uid())
+  )
+);
+CREATE POLICY "Users can insert own messages" ON public.chat_messages FOR INSERT WITH CHECK (auth.uid() = sender_id);
+
+-- 13. Saved Places
+CREATE POLICY "Users can view own places" ON public.saved_places FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "Users can insert own places" ON public.saved_places FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can update own places" ON public.saved_places FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Users can delete own places" ON public.saved_places FOR DELETE USING (auth.uid() = user_id);
+
+-- 14. Driver Documents
+CREATE POLICY "Drivers can view own documents" ON public.driver_documents FOR SELECT USING (auth.uid() = driver_id);
+CREATE POLICY "Drivers can insert own documents" ON public.driver_documents FOR INSERT WITH CHECK (auth.uid() = driver_id);
+CREATE POLICY "Drivers can update own documents" ON public.driver_documents FOR UPDATE USING (auth.uid() = driver_id);
+CREATE POLICY "Drivers can delete own documents" ON public.driver_documents FOR DELETE USING (auth.uid() = driver_id);
+
+-- 15. Fare Config
+CREATE POLICY "Fare config viewable by everyone" ON public.fare_config FOR SELECT USING (true);
