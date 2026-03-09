@@ -1389,6 +1389,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.0.2"
+  warp_core:
+    dependency: "direct main"
+    description:
+      path: "../warp_core"
+      relative: true
+    source: path
+    version: "0.0.1"
   watcher:
     dependency: transitive
     description:
@@ -1470,5 +1477,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=3.10.7 <4.0.0"
-  flutter: ">=3.38.4"
+  dart: ">=3.11.1 <4.0.0"
+  flutter: ">=3.41.0"

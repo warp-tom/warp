@@ -224,10 +224,12 @@ ALTER TABLE public.fare_config ENABLE ROW LEVEL SECURITY;
 
 -- 2. Profiles
 CREATE POLICY "Users can view own profile" ON public.profiles FOR SELECT USING (auth.uid() = id);
+CREATE POLICY "Users can insert own profile" ON public.profiles FOR INSERT WITH CHECK (auth.uid() = id);
 CREATE POLICY "Users can update own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
 
 -- 3. Drivers
 CREATE POLICY "Public profiles are viewable by everyone" ON public.drivers FOR SELECT USING (true);
+CREATE POLICY "Drivers can insert own profile" ON public.drivers FOR INSERT WITH CHECK (auth.uid() = id);
 CREATE POLICY "Drivers can update own profile" ON public.drivers FOR UPDATE USING (auth.uid() = id);
 
 -- 4. Vehicles
@@ -262,7 +264,13 @@ CREATE POLICY "Users can insert own payments" ON public.payments FOR INSERT WITH
 
 -- 10. Ratings
 CREATE POLICY "Users can view own ratings" ON public.ratings FOR SELECT USING (auth.uid() = user_id OR auth.uid() = driver_id);
-CREATE POLICY "Users can insert own ratings" ON public.ratings FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can insert own ratings" ON public.ratings FOR INSERT WITH CHECK (
+    auth.uid() = user_id 
+    AND EXISTS (
+      SELECT 1 FROM public.trips t 
+      WHERE t.id = trip_id AND t.user_id = auth.uid()
+    )
+  );
 
 -- 11. Notifications
 CREATE POLICY "Users can view own notifications" ON public.notifications FOR SELECT USING (auth.uid() = user_id);

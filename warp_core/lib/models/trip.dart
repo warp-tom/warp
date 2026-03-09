@@ -25,16 +25,16 @@ class Trip {
 
   factory Trip.fromJson(Map<String, dynamic> json) {
     return Trip(
-      id: json['id'],
-      userId: json['user_id'],
+      id: json['id'] as String? ?? '',
+      userId: json['user_id'] as String? ?? '',
       driverId: json['driver_id'],
       vehicleId: json['vehicle_id'],
       pickupAddress: json['pickup_address'] ?? '',
       destinationAddress: json['destination_address'] ?? '',
       vehicleType: json['vehicle_type'] ?? 'tricycle',
-      status: json['status'],
+      status: json['status'] as String? ?? 'unknown',
       fare: (json['fare'] as num?)?.toDouble() ?? 0.0,
-      createdAt: DateTime.parse(json['created_at']),
+      createdAt: DateTime.tryParse(json['created_at'] ?? '') ?? DateTime.now(),
     );
   }
 }

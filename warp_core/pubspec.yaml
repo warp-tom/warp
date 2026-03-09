@@ -1,11 +1,11 @@
 name: warp_core
-description: "A new Flutter package project."
+description: "Shared core models and utilities for the Warp platform."
 version: 0.0.1
 homepage:
 
 environment:
   sdk: ^3.11.1
-  flutter: ">=1.17.0"
+  flutter: ">=3.41.0"
 
 dependencies:
   flutter:

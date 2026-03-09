@@ -18,11 +18,15 @@ bin/
 
 # Flutter/Dart ephemeral and build artifacts
 **/android/app/src/main/res/drawable/
-**/ios/
-**/linux/
-**/macos/
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Flutter.podspec
+**/ios/.symlinks/
+**/ios/Pods/
+**/linux/flutter/ephemeral/
+**/macos/Flutter/ephemeral/
+**/macos/Pods/
 **/windows/flutter/ephemeral/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
-pubspec.lock
+warp_core/pubspec.lock

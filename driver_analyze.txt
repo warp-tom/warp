@@ -1,0 +1,25 @@
+﻿Analyzing warp_driver...                                        
+
+   info - Don't invoke 'print' in production code - lib\create_driver.dart:21:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\create_driver.dart:22:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\create_driver.dart:24:5 - avoid_print
+warning - Unused import: 'package:go_router/go_router.dart' - lib\features\auth\otp_screen.dart:3:8 - unused_import
+   info - 'activeColor' is deprecated and shouldn't be used. Use activeThumbColor instead. This feature was deprecated after v3.31.0-2.0.pre - lib\features\home\home_screen.dart:75:13 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\home\home_screen.dart:152:36 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\ride\active_ride_driver_screen.dart:90:79 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\ride\active_ride_driver_screen.dart:159:82 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\ride\active_ride_driver_screen.dart:165:82 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\ride\active_ride_driver_screen.dart:199:36 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\ride\incoming_job_screen.dart:231:36 - deprecated_member_use
+warning - Unused import: 'package:flutter/material.dart' - lib\routes\app_router.dart:1:8 - unused_import
+warning - Unused import: '../providers/auth_provider.dart' - lib\routes\app_router.dart:15:8 - unused_import
+   info - The imported package 'supabase' isn't a dependency of the importing package - lib\setup_test_user.dart:1:8 - depend_on_referenced_packages
+warning - The value of the local variable 'res' isn't used - lib\setup_test_user.dart:9:11 - unused_local_variable
+   info - Don't invoke 'print' in production code - lib\setup_test_user.dart:13:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\setup_test_user.dart:15:5 - avoid_print
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\ui\shared\main_shell.dart:31:47 - deprecated_member_use
+warning - The value of the local variable 'responseBody' isn't used - signup.dart:11:9 - unused_local_variable
+   info - Don't invoke 'print' in production code - signup.dart:12:3 - avoid_print
+   info - Don't invoke 'print' in production code - signup.dart:13:3 - avoid_print
+  error - The name 'MyApp' isn't a class - test\widget_test.dart:16:35 - creation_with_non_type
+
