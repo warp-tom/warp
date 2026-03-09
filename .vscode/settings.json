@@ -1,0 +1,13 @@
+{
+    "cmake.sourceDirectory": "C:/php/warp_driver/linux",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true
+}

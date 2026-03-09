@@ -1,0 +1,60 @@
+import 'dart:async';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../services/auth_service.dart';
+
+// Provider for the AuthService instance
+final authServiceProvider = Provider<AuthService>((ref) {
+  return AuthService();
+});
+
+// StreamProvider observing the auth state changes
+final authStateProvider = StreamProvider<AuthState>((ref) {
+  return ref.watch(authServiceProvider).authStateChanges;
+});
+
+// Helper to check if a user is currently logged in
+final isAuthenticatedProvider = Provider<bool>((ref) {
+  final authState = ref.watch(authStateProvider).value;
+  return authState?.session != null;
+});
+
+// StateNotifier to handle the UI state during the login flow
+class AuthNotifier extends AsyncNotifier<void> {
+  @override
+  FutureOr<void> build() {}
+
+  Future<void> requestOtp(String phone) async {
+    state = const AsyncValue.loading();
+    try {
+      await ref.read(authServiceProvider).signInWithOtp(phone);
+      state = const AsyncValue.data(null);
+    } catch (e, stack) {
+      state = AsyncValue.error(e, stack);
+    }
+  }
+
+  Future<void> verifyOtp(String phone, String token) async {
+    state = const AsyncValue.loading();
+    try {
+      await ref.read(authServiceProvider).verifyOtp(phone, token);
+      state = const AsyncValue.data(null);
+    } catch (e, stack) {
+      state = AsyncValue.error(e, stack);
+    }
+  }
+
+  Future<void> logout() async {
+    state = const AsyncValue.loading();
+    try {
+      await ref.read(authServiceProvider).signOut();
+      state = const AsyncValue.data(null);
+    } catch (e, stack) {
+      state = AsyncValue.error(e, stack);
+    }
+  }
+}
+
+final authNotifierProvider = AsyncNotifierProvider<AuthNotifier, void>(() {
+  return AuthNotifier();
+});

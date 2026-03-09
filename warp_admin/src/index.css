@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-warp-light text-warp-dark font-sans antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-warp-blue text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-warp-blue focus:ring-offset-2;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl border border-warp-border shadow-sm overflow-hidden;
+  }
+}
