@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pub-cache/
+.dart_tool/
+build/
+bin/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.log
+*.iml
+
+# Sensitive information
+.env
+*.pem
+
+# Flutter/Dart ephemeral and build artifacts
+**/android/app/src/main/res/drawable/
+**/ios/
+**/linux/
+**/macos/
+**/windows/flutter/ephemeral/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
