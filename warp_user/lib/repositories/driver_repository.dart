@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../models/driver_location.dart';
+import 'package:warp_core/warp_core.dart';
 
 class DriverRepository {
   final SupabaseClient _supabase = Supabase.instance.client;
