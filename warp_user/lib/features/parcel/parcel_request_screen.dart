@@ -83,7 +83,7 @@ class ParcelRequestScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.primary.withOpacity(0.1) : AppColors.surfaceLight,
+        color: isSelected ? AppColors.primary.withValues(alpha: 0.1) : AppColors.surfaceLight,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isSelected ? AppColors.primary : AppColors.borderLight,

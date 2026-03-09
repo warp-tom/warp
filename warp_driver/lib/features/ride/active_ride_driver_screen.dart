@@ -87,7 +87,7 @@ class _ActiveRideDriverScreenState extends State<ActiveRideDriverScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: isPickingUp ? AppColors.backgroundLight : Colors.white.withOpacity(0.2),
+                color: isPickingUp ? AppColors.backgroundLight : Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: isPickingUp ? AppColors.borderLight : Colors.transparent),
               ),
@@ -156,13 +156,13 @@ class _ActiveRideDriverScreenState extends State<ActiveRideDriverScreen> {
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.call, color: AppColors.primary),
-                  style: IconButton.styleFrom(backgroundColor: AppColors.primary.withOpacity(0.1)),
+                  style: IconButton.styleFrom(backgroundColor: AppColors.primary.withValues(alpha: 0.1)),
                 ),
                 AppSpacing.gapSm,
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.chat_bubble_rounded, color: AppColors.primary),
-                  style: IconButton.styleFrom(backgroundColor: AppColors.primary.withOpacity(0.1)),
+                  style: IconButton.styleFrom(backgroundColor: AppColors.primary.withValues(alpha: 0.1)),
                 ),
               ],
             ),
@@ -196,7 +196,7 @@ class _MapPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.borderLight.withOpacity(0.3),
+      color: AppColors.borderLight.withValues(alpha: 0.3),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

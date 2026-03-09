@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/theme/colors.dart';
@@ -49,7 +48,7 @@ class _DriverMatchingScreenState extends State<DriverMatchingScreen> with Single
       body: Stack(
         children: [
           // Simulated Map Background
-          Container(color: AppColors.borderLight.withOpacity(0.3)),
+          Container(color: AppColors.borderLight.withValues(alpha: 0.3)),
           
           SafeArea(
             child: Column(
@@ -75,13 +74,13 @@ class _DriverMatchingScreenState extends State<DriverMatchingScreen> with Single
                   child: Container(
                     padding: const EdgeInsets.all(32),
                     decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       shape: BoxShape.circle,
                     ),
                     child: Container(
                       padding: const EdgeInsets.all(32),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withOpacity(0.2),
+                        color: AppColors.primary.withValues(alpha: 0.2),
                         shape: BoxShape.circle,
                       ),
                       child: Container(
@@ -119,7 +118,7 @@ class _DriverMatchingScreenState extends State<DriverMatchingScreen> with Single
                     onPressed: () => context.pop(),
                     style: TextButton.styleFrom(
                       foregroundColor: AppColors.error,
-                      backgroundColor: AppColors.error.withOpacity(0.1),
+                      backgroundColor: AppColors.error.withValues(alpha: 0.1),
                     ),
                     child: const Text('Cancel Request'),
                   ),

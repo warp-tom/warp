@@ -228,7 +228,7 @@ class _MapPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.borderLight.withOpacity(0.3),
+      color: AppColors.borderLight.withValues(alpha: 0.3),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
