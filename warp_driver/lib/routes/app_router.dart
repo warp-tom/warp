@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -12,7 +11,6 @@ import '../features/ride/active_ride_driver_screen.dart';
 import '../features/jobs/jobs_screen.dart';
 import '../features/earnings/earnings_screen.dart';
 import '../features/profile/profile_screen.dart';
-import '../providers/auth_provider.dart';
 import '../ui/shared/main_shell.dart';
 import '../core/router/go_router_refresh_stream.dart';
 

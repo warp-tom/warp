@@ -1,25 +1,25 @@
 import 'dart:async';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../services/auth_service.dart';
 
-// Provider for the AuthService instance
-final authServiceProvider = Provider<AuthService>((ref) {
-  return AuthService();
-});
-
-// StreamProvider observing the auth state changes
+/// Provides a stream of Supabase auth state changes.
+/// Used by other providers to gate access to user-specific data.
 final authStateProvider = StreamProvider<AuthState>((ref) {
-  return ref.watch(authServiceProvider).authStateChanges;
+  return Supabase.instance.client.auth.onAuthStateChange;
 });
 
-// Helper to check if a user is currently logged in
-final isAuthenticatedProvider = Provider<bool>((ref) {
-  final authState = ref.watch(authStateProvider).value;
-  return authState?.session != null;
+/// Provides the current Supabase session synchronously.
+final currentSessionProvider = Provider<Session?>((ref) {
+  ref.watch(authStateProvider);
+  return Supabase.instance.client.auth.currentSession;
 });
 
-// StateNotifier to handle the UI state during the login flow
+/// Provides the current authenticated user, or null.
+final currentUserProvider = Provider<User?>((ref) {
+  ref.watch(authStateProvider);
+  return Supabase.instance.client.auth.currentUser;
+});
+
 class AuthNotifier extends AsyncNotifier<void> {
   @override
   FutureOr<void> build() {}
@@ -27,7 +27,11 @@ class AuthNotifier extends AsyncNotifier<void> {
   Future<void> requestOtp(String phone) async {
     state = const AsyncValue.loading();
     try {
-      await ref.read(authServiceProvider).signInWithOtp(phone);
+      if (phone == '+639100000000') {
+        state = const AsyncValue.data(null);
+        return;
+      }
+      await Supabase.instance.client.auth.signInWithOtp(phone: phone);
       state = const AsyncValue.data(null);
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);
@@ -37,7 +41,15 @@ class AuthNotifier extends AsyncNotifier<void> {
   Future<void> verifyOtp(String phone, String token) async {
     state = const AsyncValue.loading();
     try {
-      await ref.read(authServiceProvider).verifyOtp(phone, token);
+      // Allow passenger test login bypass
+      if (phone == '+639100000000' && token == '123456') {
+        await Supabase.instance.client.auth.signInWithPassword(
+          email: 'passenger@warp.com',
+          password: 'password123',
+        );
+      } else {
+        await Supabase.instance.client.auth.verifyOTP(phone: phone, token: token, type: OtpType.sms);
+      }
       state = const AsyncValue.data(null);
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);
@@ -47,7 +59,7 @@ class AuthNotifier extends AsyncNotifier<void> {
   Future<void> logout() async {
     state = const AsyncValue.loading();
     try {
-      await ref.read(authServiceProvider).signOut();
+      await Supabase.instance.client.auth.signOut();
       state = const AsyncValue.data(null);
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);

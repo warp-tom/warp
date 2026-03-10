@@ -1,5 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../models/trip.dart';
+import 'package:warp_core/warp_core.dart';
 
 class TripRepository {
   final SupabaseClient _supabase = Supabase.instance.client;

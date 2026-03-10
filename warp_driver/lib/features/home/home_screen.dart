@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Switch(
             value: _isOnline,
-            activeColor: AppColors.success,
+            activeThumbColor: AppColors.success,
             onChanged: (val) {
               setState(() {
                 _isOnline = val;
@@ -149,7 +149,7 @@ class _MapPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.borderLight.withOpacity(0.3),
+      color: AppColors.borderLight.withValues(alpha: 0.3),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/trip.dart';
-import '../models/driver_location.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:warp_core/warp_core.dart';
 import '../repositories/trip_repository.dart';
 import '../repositories/driver_repository.dart';
 import 'auth_provider.dart';

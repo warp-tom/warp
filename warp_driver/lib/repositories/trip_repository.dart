@@ -1,5 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../models/trip.dart';
+import 'package:warp_core/warp_core.dart';
+
+enum TripStatus { requested, accepted, inProgress, completed, cancelled }
 
 class TripRepository {
   final SupabaseClient _supabase = Supabase.instance.client;
@@ -25,16 +27,22 @@ class TripRepository {
   }
 
   // Update trip status
-  Future<void> updateTripStatus(String tripId, String status) async {
-    await _supabase.from('trips').update({'status': status}).eq('id', tripId);
+  Future<bool> updateTripStatus(String tripId, TripStatus status) async {
+    final response = await _supabase
+        .from('trips')
+        .update({'status': status.name})
+        .eq('id', tripId)
+        .select();
+    return response.isNotEmpty;
   }
   
   // Accept trip
-  Future<void> acceptTrip(String tripId, String driverId, String vehicleId) async {
-     await _supabase.from('trips').update({
+  Future<bool> acceptTrip(String tripId, String driverId, String vehicleId) async {
+     final response = await _supabase.from('trips').update({
        'status': 'accepted', 
        'driver_id': driverId, 
        'vehicle_id': vehicleId
-     }).eq('id', tripId);
+     }).eq('id', tripId).eq('status', 'requested').select();
+     return response.isNotEmpty;
   }
 }
